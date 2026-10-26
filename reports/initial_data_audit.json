@@ -1,0 +1,95 @@
+{
+  "main_dataset": {
+    "file": "safety_incidents_cleaned_final.csv",
+    "rows": 8000,
+    "columns": 29,
+    "duplicate_full_rows": 0,
+    "missing_values_by_column": {
+      "injury_type": 1135,
+      "body_part_affected": 1135,
+      "root_cause_description": 41,
+      "contributing_factor_2": 2578
+    },
+    "severity_distribution": {
+      "Minor": 2721,
+      "Moderate": 2700,
+      "Serious": 1639,
+      "Severe": 777,
+      "Critical": 163
+    },
+    "risk_level_distribution": {
+      "Medium": 3323,
+      "High": 2109,
+      "Low": 2009,
+      "Critical": 559
+    },
+    "incident_type_top_10": {
+      "Slip/Fall": 949,
+      "Manual Handling Injury": 715,
+      "Machine Injury": 711,
+      "Near Miss": 659,
+      "Heat Stress": 560,
+      "Trip/Fall": 520,
+      "Struck By Object": 436,
+      "Ergonomic Injury": 429,
+      "Falling Object": 421,
+      "Vehicle/Forklift Incident": 390,
+      "Fire": 386,
+      "Caught In/Between": 361,
+      "Chemical Exposure": 319,
+      "Electrical Shock": 271,
+      "Noise Exposure": 239,
+      "Chemical Spill": 176,
+      "Other": 142,
+      "Gas Leak": 119,
+      "Electrical Burn": 116,
+      "Explosion": 81
+    },
+    "root_cause_top_10": {
+      "Procedure Violation": 905,
+      "Human Error": 894,
+      "Poor Housekeeping": 787,
+      "Unsafe Working Condition": 694,
+      "Inadequate Training": 669,
+      "Fatigue/Workload": 567,
+      "Poor Maintenance": 495,
+      "Inadequate Risk Assessment": 487,
+      "Supervision Failure": 451,
+      "Design Deficiency": 413,
+      "Equipment Failure": 384,
+      "Communication Failure": 359,
+      "PPE Non-Compliance": 352,
+      "Environmental Condition": 348,
+      "Other": 195
+    },
+    "incident_date_min": "2021-01-01 00:00:00",
+    "incident_date_max": "2026-08-31 00:00:00",
+    "risk_score_min": 1.9,
+    "risk_score_max": 100.0
+  },
+  "nlp_dataset": {
+    "file": "safety_incidents_cleaned.csv",
+    "rows": 8000,
+    "columns": 5,
+    "duplicate_full_rows": 0,
+    "missing_values_by_column": {},
+    "clean_description_unique_values": 7996
+  },
+  "cross_dataset_checks": {
+    "same_row_order_incident_description": true,
+    "same_row_order_incident_type": true,
+    "same_row_order_risk_level": true,
+    "same_row_order_root_cause_category": true,
+    "same_number_of_rows": true,
+    "all_shared_fields_match_row_by_row": true,
+    "description_sets_match": true
+  },
+  "interpretation_and_cautions": [
+    "Matching descriptions and labels suggest the NLP file is a derived view, not an independent dataset.",
+    "Matching content does not establish real-world data provenance.",
+    "Preserve missing injury and body-part fields until their meaning is confirmed.",
+    "Do not use risk_level or risk_score as input features when predicting risk_level.",
+    "Do not use root_cause_category as an input when predicting root_cause_category.",
+    "Evaluate classifiers on held-out data using per-class precision, recall, F1 and a confusion matrix."
+  ]
+}

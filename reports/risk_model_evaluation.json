@@ -1,0 +1,100 @@
+{
+  "task": "Predict risk_level from eligible incident features",
+  "model": "OneHotEncoder + TF-IDF + RandomForestClassifier",
+  "target": "risk_level",
+  "excluded_fields": [
+    "risk_score",
+    "severity_level",
+    "root_cause_category",
+    "root_cause_description",
+    "injury_type",
+    "body_part_affected",
+    "medical_treatment_required",
+    "immediate_action",
+    "corrective_action",
+    "preventive_action",
+    "lost_time_days",
+    "investigation_status",
+    "incident_status"
+  ],
+  "records_used": 8000,
+  "training_records": 6400,
+  "test_records": 1600,
+  "accuracy": 0.6625,
+  "classification_report": {
+    "Critical": {
+      "precision": 0.6509433962264151,
+      "recall": 0.6160714285714286,
+      "f1-score": 0.6330275229357798,
+      "support": 112.0
+    },
+    "High": {
+      "precision": 0.6891891891891891,
+      "recall": 0.6042654028436019,
+      "f1-score": 0.6439393939393939,
+      "support": 422.0
+    },
+    "Low": {
+      "precision": 0.7005649717514124,
+      "recall": 0.6169154228855721,
+      "f1-score": 0.656084656084656,
+      "support": 402.0
+    },
+    "Medium": {
+      "precision": 0.6337662337662338,
+      "recall": 0.7349397590361446,
+      "f1-score": 0.6806136680613668,
+      "support": 664.0
+    },
+    "accuracy": 0.6625,
+    "macro avg": {
+      "precision": 0.6686159477333125,
+      "recall": 0.6430480033341868,
+      "f1-score": 0.6534163102552992,
+      "support": 1600.0
+    },
+    "weighted avg": {
+      "precision": 0.666369622550027,
+      "recall": 0.6625,
+      "f1-score": 0.6614468838437568,
+      "support": 1600.0
+    }
+  },
+  "class_labels": [
+    "Critical",
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "confusion_matrix": [
+    [
+      69,
+      38,
+      0,
+      5
+    ],
+    [
+      36,
+      255,
+      6,
+      125
+    ],
+    [
+      0,
+      2,
+      248,
+      152
+    ],
+    [
+      1,
+      75,
+      100,
+      488
+    ]
+  ],
+  "limitations": [
+    "Risk labels may have been generated from rules or fields unavailable at prediction time.",
+    "This random split does not prove generalization to future incidents or other facilities.",
+    "Predictions require review by a qualified safety professional."
+  ]
+}

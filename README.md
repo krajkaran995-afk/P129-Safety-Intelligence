@@ -1,4 +1,4 @@
-# HCL P_129 — Safety Incident Prediction and Root Cause Analysis using NLP
+# HCL Industry Project  — Safety Incident Prediction and Root Cause Analysis using NLP
 
 A Streamlit-first safety intelligence prototype using the two supplied CSV datasets, reproducible data preparation, and experimental trained models for root-cause classification and risk-level prediction.
 
@@ -94,3 +94,22 @@ This creates `data/processed/safety_incidents_refined.csv` and `data/processed/d
 4. Investigate whether the model labels and evaluation splits support reliable use on future incidents
 6. Add MySQL after data contracts and analytical modules stabilize
 7. Add tests, logging, error handling and final documentation
+
+    ## 🚀 Live Demo
+
+**Try the deployed application:**  
+https://p129-safety-intelligence-dvocg92a92oj2k9w5ndfcw.streamlit.app/
+
+## 💻 Source Code
+
+**GitHub Repository:**  
+https://github.com/krajkaran995-afk/P129-Safety-Intelligence
+
+## 👨‍💻 Project Information
+
+- **Project ID:** HCL P_129
+- **Project Title:** Safety Incident Prediction and Root Cause Analysis using NLP
+- **Developer:** Raj Karan
+- **Roll Number:** 2500320109016
+- **Technology Stack:** Python, Streamlit, NLP, Machine Learning, Pandas, Scikit-learn, PostgreSQL
+

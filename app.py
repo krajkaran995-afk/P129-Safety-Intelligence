@@ -137,10 +137,10 @@ st.markdown(
 st.markdown(
     """
     <section class="p129-hero">
-      <div class="p129-hero-kicker">HCL PROJECT · P_129 · SAFETY INTELLIGENCE</div>
-      <div class="p129-hero-title">🛡️ Industrial Safety Overview</div>
-      <p class="p129-hero-subtitle">Incident intelligence · Risk signals · Root-cause insights</p>
-      <span class="p129-hero-note">● Model-assisted review · Qualified human review remains essential</span>
+      <div class="p129-hero-kicker">    HCL PROJECT · SAFETY INTELLIGENCE</div>
+      <div class="p129-hero-title">    🛡️ Safety Intelligence Platform</div>
+      <p class="p129-hero-subtitle">    Industrial Incident Prediction · Risk Assessment · Root Cause Analysis</p>
+      <span class="p129-hero-note">    ● AI-assisted insights · Expert safety review remains essential</span>
     </section>
     """,
     unsafe_allow_html=True,
@@ -150,9 +150,11 @@ st.markdown(
 # Load project data and models below.
 
 
-st.title("🛡️ P_129 Safety Intelligence")
+st.title("🛡️ Safety Intelligence Platform")
 
-st.caption("Safety Incident Prediction and Root Cause Analysis")
+st.caption(
+    "Safety Incident Prediction and Root Cause Analysis using NLP"
+)
 
 st.divider()
 
@@ -208,9 +210,11 @@ PAGES = [
 
 with st.sidebar:
 
-    st.title("🛡️ P_129")
+    st.title("🛡️ Safety Intelligence")
 
-    st.caption("Safety Intelligence Platform")
+    st.caption("Industrial Safety Analytics")
+
+    st.caption("Developed for HCL Project P_129")
 
     st.divider()
 
@@ -373,7 +377,7 @@ if page == "🏠 Dashboard":
                 fillcolor="rgba(200, 121, 44, 0.18)",
             )
 
-            st.plotly_chart(style_figure(fig), use_container_width=True)
+            st.plotly_chart(style_figure(fig), width="stretch")
 
     with right:
 
@@ -385,7 +389,7 @@ if page == "🏠 Dashboard":
 
             fig = px.pie(dist, names="Severity", values="Records", hole=0.48)
 
-            st.plotly_chart(style_figure(fig), use_container_width=True)
+            st.plotly_chart(style_figure(fig),width="stretch")
 
     left, right = st.columns(2)
 
@@ -397,7 +401,7 @@ if page == "🏠 Dashboard":
 
             cat = view["incident_type"].fillna("Unknown").value_counts().head(10).rename_axis("Incident type").reset_index(name="Records")
 
-            st.plotly_chart(style_figure(px.bar(cat, x="Records", y="Incident type", orientation="h")), use_container_width=True)
+            st.plotly_chart(style_figure(px.bar(cat, x="Records", y="Incident type", orientation="h")), width="stretch")
 
     with right:
 
@@ -407,13 +411,13 @@ if page == "🏠 Dashboard":
 
             cat = view["root_cause_category"].fillna("Unknown").value_counts().head(10).rename_axis("Root cause").reset_index(name="Records")
 
-            st.plotly_chart(style_figure(px.bar(cat, x="Records", y="Root cause", orientation="h")), use_container_width=True)
+            st.plotly_chart(style_figure(px.bar(cat, x="Records", y="Root cause", orientation="h")), width="stretch")
 
     st.subheader("Recent records")
 
     display_cols = [c for c in ["incident_date","department","location","incident_type","severity_level","risk_level","root_cause_category","investigation_status"] if c in view.columns]
 
-    st.dataframe(view.sort_values("incident_date", ascending=False)[display_cols].head(10), use_container_width=True, hide_index=True)
+    st.dataframe(view.sort_values("incident_date", ascending=False)[display_cols].head(10), width="stretch", hide_index=True)
 
 # ---------- Incident Explorer ----------
 
@@ -530,7 +534,7 @@ elif page == "📋 Incident Explorer":
 
     cols = [c for c in ["incident_date","department","location","incident_type","severity_level","risk_level","root_cause_category","investigation_status"] if c in view.columns]
 
-    st.dataframe(view[cols], use_container_width=True, hide_index=True, height=420)
+    st.dataframe(view[cols], width="stretch", hide_index=True, height=420)
 
     if not view.empty:
 
@@ -596,7 +600,7 @@ elif page == "📄 Report Upload":
 
                 st.write(f"Preview: {preview.shape[0]:,} rows × {preview.shape[1]} columns")
 
-                st.dataframe(preview.head(50), use_container_width=True)
+                st.dataframe(preview.head(50), width="stretch")
 
             except Exception as e:
 
@@ -610,7 +614,7 @@ elif page == "📄 Report Upload":
 
                 st.write(f"Preview: {preview.shape[0]:,} rows × {preview.shape[1]} columns")
 
-                st.dataframe(preview.head(50), use_container_width=True)
+                st.dataframe(preview.head(50), width="stretch")
 
             except Exception as e:
 
@@ -1415,7 +1419,7 @@ elif page == "🧠 Model Evaluation":
 
                     metrics_df,
 
-                    use_container_width=True,
+                    width="stretch",
 
                     hide_index=True
 
@@ -1451,7 +1455,7 @@ elif page == "🧠 Model Evaluation":
 
                     ),
 
-                    use_container_width=True,
+                    width="stretch",
 
                 )
 
@@ -1511,7 +1515,7 @@ elif page == "🧠 Model Evaluation":
 
                     ),
 
-                    use_container_width=True,
+                    width="stretch",
 
                 )
 
@@ -1567,7 +1571,7 @@ elif page == "📊 Analytics":
 
             fig = px.line(trend, x="_month", y="Records", markers=True, title="Records by month")
 
-            st.plotly_chart(style_figure(fig), use_container_width=True)
+            st.plotly_chart(style_figure(fig), width="stretch")
 
     with tabs[1]:
 
@@ -1577,13 +1581,13 @@ elif page == "📊 Analytics":
 
             v = view["department"].fillna("Unknown").value_counts().head(12).rename_axis("Department").reset_index(name="Records")
 
-            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Department", orientation="h")), use_container_width=True)
+            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Department", orientation="h")), width="stretch")
 
         with y:
 
             v = view["location"].fillna("Unknown").value_counts().head(12).rename_axis("Location").reset_index(name="Records")
 
-            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Location", orientation="h")), use_container_width=True)
+            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Location", orientation="h")), width="stretch")
 
     with tabs[2]:
 
@@ -1593,13 +1597,13 @@ elif page == "📊 Analytics":
 
             v = view["risk_level"].fillna("Unknown").value_counts().rename_axis("Risk level").reset_index(name="Records")
 
-            st.plotly_chart(px.pie(v, names="Risk level", values="Records", hole=.4), use_container_width=True)
+            st.plotly_chart(px.pie(v, names="Risk level", values="Records", hole=.4), width="stretch")
 
         with y:
 
             v = view["root_cause_category"].fillna("Unknown").value_counts().head(12).rename_axis("Root cause").reset_index(name="Records")
 
-            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Root cause", orientation="h")), use_container_width=True)
+            st.plotly_chart(style_figure(px.bar(v, x="Records", y="Root cause", orientation="h")), width="stretch")
 
 # ---------- Reports ----------
 
@@ -1619,16 +1623,16 @@ elif page == "📑 Reports & Export":
             data=pdf_bytes,
             file_name="P129_Safety_Report.pdf",
             mime="application/pdf",
-            use_container_width=True,
+            width="stretch",
         )
     except Exception as exc:
         st.error(f"Could not generate PDF report: {exc}")
 
     st.write(f"{len(view):,} records selected.")
 
-    st.dataframe(view.head(100), use_container_width=True, hide_index=True)
+    st.dataframe(view.head(100), width="stretch", hide_index=True)
 
-    st.download_button("Download selected records as CSV", view.drop(columns=["_year","_month"], errors="ignore").to_csv(index=False).encode("utf-8"), file_name="p129_filtered_incidents.csv", mime="text/csv", use_container_width=True)
+    st.download_button("Download selected records as CSV", view.drop(columns=["_year","_month"], errors="ignore").to_csv(index=False).encode("utf-8"), file_name="p129_filtered_incidents.csv", mime="text/csv", width="stretch")
 
     st.info("The PDF and CSV reports contain filtered dataset values and are not verified safety findings.")
 
@@ -1666,9 +1670,9 @@ elif page == "🧪 Data Quality":
 
         missing["Missing %"] = (missing["Missing values"] / len(df) * 100).round(2)
 
-        st.dataframe(missing, use_container_width=True, hide_index=True)
+        st.dataframe(missing, width="stretch", hide_index=True)
 
-        st.plotly_chart(style_figure(px.bar(missing, x="Missing values", y="Column", orientation="h", title="Missing values by field")), use_container_width=True)
+        st.plotly_chart(style_figure(px.bar(missing, x="Missing values", y="Column", orientation="h", title="Missing values by field")), width="stretch")
 
     left, right = st.columns(2)
 
@@ -1678,7 +1682,7 @@ elif page == "🧪 Data Quality":
 
         sev = df["severity_level"].fillna("Missing").value_counts().rename_axis("Severity").reset_index(name="Records")
 
-        st.dataframe(sev, use_container_width=True, hide_index=True)
+        st.dataframe(sev, width="stretch", hide_index=True)
 
     with right:
 
@@ -1686,7 +1690,7 @@ elif page == "🧪 Data Quality":
 
         risk = df["risk_level"].fillna("Missing").value_counts().rename_axis("Risk level").reset_index(name="Records")
 
-        st.dataframe(risk, use_container_width=True, hide_index=True)
+        st.dataframe(risk, width="stretch", hide_index=True)
 
     st.subheader("Cross-file consistency")
 
@@ -1924,7 +1928,7 @@ elif page == "🗂️ Prediction History":
 
                     mime="text/csv",
 
-                    use_container_width=True,
+                    width="stretch",
 
                 )
 
